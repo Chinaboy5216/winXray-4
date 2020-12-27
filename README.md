@@ -3,7 +3,7 @@
 [网络免费 vmess 服务器订阅链接](https://proxypool.ga/vmess/sub)   
 [网络免费 Shadowsocks 服务器订阅链接](https://proxypool.ga/ss/sub)     
 [网络免费 clash 服务器订阅链接](https://proxypoolss.tk/clash/proxies?speed=100&type=vmess,trojan)   
-可复制上面各种格式订阅链接，在 winXray 中点击「批量导入链接」体验 winXray 有强大的兼容性。
+可复制上面各种格式订阅链接，在 winXray 中点击「批量导入链接」一键体验 winXray 强大的兼容性。
 
 # winXray 
 本软件源码已贡献到公共领域并放弃版权，源码可使用 [aardio（开发环境仅6.5MB）](http://www.aardio.com) 编译生成单文件绿色EXE( 不需要.Net等任何外部运行库 ），**[点这里下载](./../../raw/master/release/winXray.7z)** （ [64位版本](./../../raw/master/release/winXray.7z) / [32位版本](./../../raw/master/release/winXray32.7z) ），解压即可直接使用( 仅  **[5.0MB](./../../raw/master/release/winXray.7z)** - 已自带 Xray-core）。
