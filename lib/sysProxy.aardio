@@ -1,37 +1,37 @@
 //sysProxy 系统代理
 import config;
 import inet.conn;
-import xray.github;
-import xray.pacServer;
+import v2ray.github;
+import v2ray.pacServer;
 
 namespace sysProxy;
 
 switch = function(mode){  
 	..config.proxy.mode = mode : "direct";
 	..config.proxy.save();
-	
+  
 	if(mode=="pac"){
-		var pacUrl = ..xray.pacServer.getUrl();
+		var pacUrl = ..v2ray.pacServer.getUrl();
 		if(pacUrl){
-			..inet.conn.setProxyAutoConfig(,pacUrl );
+			..inet.conn.setProxyAutoConfig(,pacUrl ); 
 		}
 		else {
-			..xray.pacServer.restart();
+			..v2ray.pacServer.restart();
 		}
-		..xray.github.setProxy(true);
+		..v2ray.github.setProxy(true);
 	}
 	elseif(mode=="proxy"){ 
-		import xray.core;
-		var address = xray.core.getHttpProxyAddress(); 
+		import v2ray.core;
+		var address = v2ray.core.getSystemProxyConfig(); 
 		
 		if(address){
 			..inet.conn.setProxy(,address);  
-			..xray.github.setProxy(true); 	
+			..v2ray.github.setProxy(true); 	
 		} 
 	}
 	else {
 		..inet.conn.setProxy();
-		..xray.github.setProxy(false);	
+		..v2ray.github.setProxy(false);	
 	} 
 	..publish("sysProxy.modeChanged",mode)
 } 
@@ -48,11 +48,23 @@ switchToDirectMode  = function(){
 	switch("direct") 
 }
 
+switchHotkey  = function(){ 
+    var mode = ..config.proxy.mode;
+	if( mode != "pac"){
+		switch("pac") 
+	}
+	else {
+		switch("proxy") 
+	}
+	
+	return ..config.proxy.mode;
+}
+
 reset = function(proxy){
 	if(proxy===false){
 		if(..config.proxy.mode != "direct"){
 			..inet.conn.setProxy();
-			..xray.github.setProxy(false);
+			..v2ray.github.setProxy(false);
 		}
 		return;
 	}
@@ -67,7 +79,7 @@ reset = function(proxy){
 	}
 } )
 
-..subscribe("xrayCore.restarted",function(socksProxyPort,httpProxPort){ 
+..subscribe("v2RayCore.restarted",function(socksProxyPort,httpProxPort){ 
 	if(..config.proxy.mode != "direct"){
 		reset(true);
 	}
